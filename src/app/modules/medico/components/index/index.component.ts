@@ -44,6 +44,7 @@ export class IndexComponent implements OnInit{
   LeerTodo(){
     this.httpService.LeerTodo(this.cantidadPorPagina, this.numeroDePagina, this.textoBusqueda)
     .subscribe((respuesta: any) => {
+      console.log('Datos recibidos:', respuesta.datos.elemento);
       this.dataSource.data = respuesta.datos.elemento;
       this.cantidadTotal = respuesta.datos.cantidadTotal;
     });
@@ -81,8 +82,55 @@ export class IndexComponent implements OnInit{
       },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe(resultado => {
+      if (resultado) {
+        this.httpService.CrearMedico(resultado).subscribe({
+          next: () => {
+            this.toastr.success('Médico creado correctamente', 'Éxito');
+            this.LeerTodo(); // Actualiza la tabla
+          },
+          error: () => {
+            this.toastr.error('Error al crear el médico', 'Error');
+          },
+        });
+      }
     });
   }
+
+  editarMedico(medico: any) {
+    const dialogRef = this.dialog.open(FormComponent, {
+      disableClose: true,
+      autoFocus: true,
+      closeOnNavigation: false,
+      position: { top: '30px' },
+      width: '700px',
+      data: { tipo: 'EDITAR', medico },
+    });
+  
+    dialogRef.afterClosed().subscribe(resultado => {
+      if (resultado) {
+        this.httpService.ActualizarMedico(medico.id, resultado).subscribe({
+          next: () => {
+            this.toastr.success('Médico actualizado correctamente', 'Éxito');
+            this.LeerTodo(); // Actualiza la tabla
+          },
+          error: () => {
+            this.toastr.error('Error al actualizar el médico', 'Error');
+          },
+        });
+      }
+    });
+  }
+
+  verMedico(medico: any) {
+    this.dialog.open(FormComponent, {
+      disableClose: true,
+      autoFocus: true,
+      closeOnNavigation: false,
+      position: { top: '30px' },
+      width: '700px',
+      data: { tipo: 'VER', medico },
+    });
+  }
+
 }

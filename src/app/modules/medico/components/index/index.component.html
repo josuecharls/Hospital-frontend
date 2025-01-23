@@ -29,8 +29,8 @@
               
                 <!-- Nombre Column -->
                 <ng-container matColumnDef="nombre">
-                  <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                  <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                  <th mat-header-cell *matHeaderCellDef> Nombres y Apellidos </th>
+                  <td mat-cell *matCellDef="let element"><a (click)="verMedico(element)" class="nombre-link">{{ element.nombre }} {{ element.apellidoPaterno }} {{ element.apellidoMaterno }} </a></td>
                 </ng-container>
               
                 <!-- Especialista Column -->
@@ -45,6 +45,9 @@
                 <ng-container matColumnDef="acciones">
                   <th mat-header-cell *matHeaderCellDef> Acciones </th>
                   <td mat-cell *matCellDef="let element">
+                    <button (click)="editarMedico(element)" matTooltip="Editar Médico" mat-icon-button color="accent">
+                      <mat-icon>edit</mat-icon>
+                    </button>
                     <button (click)="eliminar(element.id)" matTooltip="Eliminar Elemento" mat-icon-button color="warn">
                       <mat-icon>delete</mat-icon>
                     </button>

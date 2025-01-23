@@ -30,4 +30,21 @@ export class HTTPService {
     };
     return this.httpCliente.delete('http://localhost:56361/api/medico', option);
   }
+
+  CrearMedico(datos: any): Observable<any> {
+    return this.httpCliente.post('http://localhost:56361/api/medico', datos, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
+  }
+
+  ActualizarMedico(id: number, datos: any): Observable<any> {
+    return this.httpCliente.put(`http://localhost:56361/api/medico/${id}`, datos, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
+  }
+
 }

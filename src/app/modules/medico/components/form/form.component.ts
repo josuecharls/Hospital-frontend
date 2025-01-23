@@ -21,8 +21,22 @@ export class FormComponent {
     private fb: FormBuilder
   ){}
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.initForm();
+    if (this.data.tipo === 'VER' || this.data.tipo === 'EDITAR') {
+      this.formGroup.patchValue({
+        cedula: this.data.medico.cedula,
+        nombre: this.data.medico.nombre,
+        apellidoPaterno: this.data.medico.apellidoPaterno || '', // Manejo de null
+        apellidoMaterno: this.data.medico.apellidoMaterno || '', // Manejo de null
+        esEspecialista: this.data.medico.esEspecialista,
+        habilitado: this.data.medico.habilitado,
+      });
+  
+      if (this.data.tipo === 'VER') {
+        this.formGroup.disable(); // Desactiva todos los campos para vista de solo lectura
+      }
+    }
   }
 
   cancelar(){
@@ -30,7 +44,14 @@ export class FormComponent {
   }
 
   guardar(){
-
+    if (this.formGroup.valid) {
+      const datos = this.formGroup.getRawValue();
+  
+      // Llama al servicio HTTP para guardar los datos
+      this.dialogRef.close(datos); // Envía los datos al cerrar el diálogo
+    } else {
+      this.dialogRef.close();
+    }
   }
 
   initForm(){

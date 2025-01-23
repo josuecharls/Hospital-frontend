@@ -86,3 +86,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: center;
     width: 140px;
   }
+
+  .nombre-link{
+    cursor: pointer;
+    color: #007bff; /* Un color para indicar interactividad (opcional) */
+    text-decoration: underline; /* Indica que es clickeable */
+  }
+
+  .nombre-link:hover{
+    text-decoration: none;
+  }
