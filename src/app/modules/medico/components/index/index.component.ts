@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HTTPService } from '../../../../services/http.service';
 import { MaterialModule } from '../../../../material.module';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { FormComponent } from '../form/form.component';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
   imports: [RouterModule, MaterialModule, MatFormFieldModule],
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
-  schemas: [NO_ERRORS_SCHEMA],
+
 })
 export class IndexComponent implements OnInit{
   
@@ -29,7 +30,9 @@ export class IndexComponent implements OnInit{
 
 
   constructor(
-  private httpService: HTTPService
+  private httpService: HTTPService,
+  private toastr: ToastrService,
+  public dialog: MatDialog
   ){
   }
   
@@ -60,8 +63,26 @@ export class IndexComponent implements OnInit{
 
       this.httpService.Eliminar(ids)
       .subscribe((respuesta: any) => {
+        this.toastr.success('Eliminado correctamente', 'Eliminado!')
         this.LeerTodo();
       });
     }
+  }
+
+  crearMedico(){
+    const dialogRef = this.dialog.open(FormComponent, {
+      disableClose: true,
+      autoFocus: true,
+      closeOnNavigation: false,
+      position: { top: '30px'},
+      width: '700px',
+      data: {
+        tipo: 'CREAR'
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

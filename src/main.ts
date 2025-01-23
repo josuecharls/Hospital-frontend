@@ -5,11 +5,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routes } from './app/app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    importProvidersFrom(BrowserAnimationsModule), // Ajuste correcto
+    importProvidersFrom(BrowserAnimationsModule,
+      ToastrModule.forRoot({
+        timeOut: 3000,
+        positionClass: 'toast-top-right',
+        preventDuplicates: true,
+      })
+    ), // Ajuste correcto
   ],
 }).catch((err) => console.error(err));

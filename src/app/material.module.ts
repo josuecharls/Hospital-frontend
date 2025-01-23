@@ -7,8 +7,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 @NgModule({
 
   exports: [
@@ -21,7 +25,11 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatPaginatorModule,
     MatFormFieldModule,
     FormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule,
+    MatRadioModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule
   ]
 })
 export class MaterialModule {}

@@ -1,1 +1,48 @@
-<p>form works!</p>
+<h2 mat-dialog-title>Crear Médico</h2>
+
+<div mat-dialog-content>
+<form [formGroup]="formGroup">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <mat-radio-group formControlName="habilitado" name="habilitado">
+                    <mat-radio-button [value]="true">Habilitado</mat-radio-button>
+                    <mat-radio-button [value]="false">Inhabilitado</mat-radio-button>
+                  </mat-radio-group>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Cédula</mat-label>
+                    <input name="cedula" formControlName="cedula" matInput type="text" >
+                  </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Nombres</mat-label>
+                    <input name="nombre" formControlName="nombre" matInput type="text" >
+                  </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Apellido Paterno</mat-label>
+                    <input name="apellidoPaterno" formControlName="apellidoPaterno" matInput type="text" >
+                  </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Apellido Materno</mat-label>
+                    <input name="apellidoMaterno" formControlName="apellidoMaterno" matInput type="text" >
+                  </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-slide-toggle name="esEspecialista" formControlName="esEspecialista">Es Especilista</mat-slide-toggle>
+            </div>
+        </div>
+    </div>
+</form>
+</div>  
+
+<mat-dialog-actions>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-button (click)="guardar()">Guardar</button>
+</mat-dialog-actions>
