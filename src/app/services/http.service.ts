@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
@@ -18,6 +18,16 @@ export class HTTPService {
       .set('textoBusqueda', textoBusqueda || '');
 
     // Devuelve el resultado del HttpClient
-    return this.httpCliente.get('http://localhost:56361/api/medico/', { params: parametros });
+    return this.httpCliente.get('http://localhost:56361/api/medico', { params: parametros });
+  }
+
+  Eliminar(ids: number[]){
+    const option = {
+      headers : new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      body : ids
+    };
+    return this.httpCliente.delete('http://localhost:56361/api/medico', option);
   }
 }
