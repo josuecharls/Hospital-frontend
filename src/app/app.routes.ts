@@ -21,6 +21,12 @@ export const routes: Routes = [
           import('./modules/medico/components/index/index.component').then(
             (m) => m.IndexComponent),
       },
+      {
+        path: 'paciente/index',
+        loadComponent: () =>
+          import('./modules/paciente/components/index/index.component').then(
+            (m) => m.IndexComponent),
+      },
     ],
   },
 

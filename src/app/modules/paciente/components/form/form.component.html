@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Crear Médico</h2>
+
+<div mat-dialog-content>
+<form [formGroup]="formGroup">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Cédula</mat-label>
+                    <input name="cedula" formControlName="cedula" matInput type="text" >
+                  </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Nombres</mat-label>
+                    <input name="nombre" formControlName="nombre" matInput type="text" >
+                  </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Apellido Paterno</mat-label>
+                    <input name="apellidoPaterno" formControlName="apellidoPaterno" matInput type="text" >
+                  </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Apellido Materno</mat-label>
+                    <input name="apellidoMaterno" formControlName="apellidoMaterno" matInput type="text" >
+                  </mat-form-field>
+            </div>
+            <div class="col-12">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Direccion</mat-label>
+                    <input name="direccion" formControlName="direccion" matInput type="text" >
+                  </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Nro Celular</mat-label>
+                    <input name="celular" formControlName="celular" matInput type="text" >
+                  </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Correo</mat-label>
+                    <input name="correoElectronico" formControlName="correoElectronico" matInput type="text" >
+                  </mat-form-field>
+            </div>
+
+        </div>
+    </div>
+</form>
+</div>  
+
+<mat-dialog-actions>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-button (click)="guardar()">Guardar</button>
+</mat-dialog-actions>

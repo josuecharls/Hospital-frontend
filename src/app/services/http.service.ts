@@ -47,4 +47,40 @@ export class HTTPService {
     });
   }
 
+  LeerTodoPaciente(cantidadPag: number, numPagina: number, textoBusqueda: string): Observable<any> {
+    let parametros = new HttpParams()
+      .set('cantidadPag', cantidadPag.toString()) // Asegúrate de convertir a string
+      .set('numPagina', numPagina.toString())
+      .set('textoBusqueda', textoBusqueda || '');
+
+    // Devuelve el resultado del HttpClient
+    return this.httpCliente.get('http://localhost:56361/api/paciente/', { params: parametros });
+  }
+
+  EliminarPaciente(ids: number[]){
+    const option = {
+      headers : new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      body : ids
+    };
+    return this.httpCliente.delete('http://localhost:56361/api/paciente', option);
+  }
+
+  CrearPaciente(datos: any): Observable<any> {
+    return this.httpCliente.post('http://localhost:56361/api/paciente', datos, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
+  }
+
+  ActualizarPaciente(id: number, datos: any): Observable<any> {
+    return this.httpCliente.put(`http://localhost:56361/api/paciente/${id}`, datos, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
+  }
+
 }
